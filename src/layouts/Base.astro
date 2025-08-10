@@ -1,1 +1,36 @@
-
+export const Base = `---
+import '../styles.css';
+import { orgJSONLD } from '../lib/seo';
+const { title = 'WON96 Blog', description = 'WON96 品牌博客', canonical = 'https://blog.won96.com' } = Astro.props;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <script type="application/ld+json">{JSON.stringify(orgJSONLD())}</script>
+  </head>
+  <body class="min-h-screen bg-zinc-950 text-zinc-100">
+    <header class="border-b border-zinc-800">
+      <div class="mx-auto max-w-5xl px-4 py-4 flex items-center gap-4">
+        <a href="/" class="flex items-center gap-2 font-semibold text-lg">
+          <img src="/logo.png" alt="WON96" class="h-8 w-8"/> WON96 Blog
+        </a>
+        <nav class="ml-auto flex gap-4 text-sm">
+          <a href="/about" class="hover:underline">关于我们</a>
+          <a href="/contact" class="hover:underline">联系</a>
+          <a href="/customer-service" class="hover:underline">客服</a>
+        </nav>
+      </div>
+    </header>
+    <main class="mx-auto max-w-5xl px-4 py-8">
+      <slot />
+    </main>
+    <footer class="border-t border-zinc-800">
+      <div class="mx-auto max-w-5xl px-4 py-10 text-sm text-zinc-400">© {new Date().getFullYear()} WON96. 保留所有权利。</div>
+    </footer>
+  </body>
+</html>`;
