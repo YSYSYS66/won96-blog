@@ -1,1 +1,6 @@
-
+export const tsconfig = `{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": "."
+  }
+}`;
