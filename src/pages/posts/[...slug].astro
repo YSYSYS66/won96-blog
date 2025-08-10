@@ -1,0 +1,22 @@
+export const PostPage = `---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { articleJSONLD } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((p) => ({ params: { slug: p.slug.split('/') }, props: { post: p } }));
+}
+
+const { post } = Astro.props;
+const canonical = ` + "`https://blog.won96.com/posts/${post.slug}`" + `;
+const jsonld = articleJSONLD({ title: post.data.title, url: canonical, datePublished: post.data.publishDate.toISOString() });
+---
+<Base title={post.data.title + ' — WON96 Blog'} description={post.data.summary} canonical={canonical}>
+  <script type="application/ld+json">{JSON.stringify(jsonld)}</script>
+  <article class="prose prose-invert max-w-none">
+    <h1>{post.data.title}</h1>
+    <p class="text-sm text-zinc-400">{post.data.publishDate.toLocaleDateString('zh-CN')}</p>
+    <Fragment set:html={post.body} />
+  </article>
+</Base>`;
