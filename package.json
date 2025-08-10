@@ -1,1 +1,23 @@
-
+export const pkg = {
+  "name": "won96-blog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "astro": "^4.16.6",
+    "@astrojs/tailwind": "^5.1.3",
+    "@astrojs/rss": "^4.0.7",
+    "@astrojs/sitemap": "^3.2.1",
+    "tailwindcss": "^3.4.10",
+    "@tailwindcss/typography": "^0.5.15"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  }
+}
